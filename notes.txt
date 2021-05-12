@@ -1,0 +1,18 @@
+git init                # inside project_root_folder/
+git add -A              # Add all files
+git branch -m main      # rename master branch to main
+
+heroku create           # Create heroku app
+
+git remote -v           # list git aliases (make sure heroku app link is correct)
+
+# if heroku git alias is not correct run
+heroku git:remote -a app_name
+
+heroku config:set DISABLE_COLLECSTATIC=1    # Disable static files
+
+git push heroku main
+
+heroku ps:scale web=1
+
+heroku open
