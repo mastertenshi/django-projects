@@ -19,10 +19,18 @@
     </div>
     <div class="card-body">
         <pre>{{ article.body }}</pre>
+        <div class="text-center text-muted">
+            <a href="{% url 'article_edit' article.pk %}">Edit</a>
+            <a href="{% url 'article_delete' article.pk %}">Delete</a>
+        </div>
     </div>
-    <div class="card-footer text-center text-muted">
-        <a href="{% url 'article_edit' article.pk %}">Edit</a>
-        <a href="{% url 'article_delete' article.pk %}">Delete</a>
+    <div class="card-footer">
+        {% for comment in article.comments.all %}
+            <p>
+                {{ comment }} &middot;
+                <span class="text-muted">{{ comment.author }}  </span>
+            </p>
+        {% endfor %}
     </div>
 </div>
 
