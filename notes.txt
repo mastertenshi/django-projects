@@ -1,3 +1,5 @@
+###  Heroku / Git  ###
+
 git init                # inside project_root_folder/
 git add -A              # Add all files
 git branch -m main      # rename master branch to main
@@ -16,3 +18,35 @@ git push heroku main
 heroku ps:scale web=1
 
 heroku open
+
+
+###  Docker  ###
+
+sudo docker-compose run [container] [command]
+
+sudo docker-compose run web python manage.py...
+sudo docker-compose run web django-admin startproject...
+
+
+# after creating a NEW project
+# make sure folder/file PERMISSIONS are NOT ROOT
+sudo chown -R $USER:$USER .
+
+
+    # settings.py
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': 'db',
+            'PORT': 5432,
+        }
+    }
+
+
+sudo docker-compose up
+
+docker ps
