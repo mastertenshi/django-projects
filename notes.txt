@@ -48,5 +48,6 @@ sudo chown -R $USER:$USER .
 
 
 sudo docker-compose up
+sudo docker-compose up --build  (force rebuild)
 
 docker ps
