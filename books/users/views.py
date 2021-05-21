@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView
 
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomAuthenticationForm
 
 
 class SignupView(CreateView):
@@ -12,4 +12,5 @@ class SignupView(CreateView):
 
 
 class CustomLoginView(LoginView):
+    form_class = CustomAuthenticationForm
     redirect_authenticated_user = True
