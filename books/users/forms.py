@@ -9,21 +9,11 @@ class CustomUserCreationForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['email'].widget.attrs.update({
-            'class': 'form-control mt-4',
-            'placeholder': 'example@email.com'})
-
-        self.fields['username'].widget.attrs.update({
-            'class': 'form-control mt-4',
-            'placeholder': 'Username'})
-
-        self.fields['password1'].widget.attrs.update({
-            'class': 'form-control mt-4',
-            'placeholder': 'Password'})
-
-        self.fields['password2'].widget.attrs.update({
-            'class': 'form-control mt-4',
-            'placeholder': 'Password'})
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control',
+                'placeholder': f'{field}'
+            })
 
 
 class CustomUserChangeForm(UserChangeForm):
