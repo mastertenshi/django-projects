@@ -1,5 +1,5 @@
 {% extends '_base.html' %}
-{% load static %}
+{% load css_filters %}
 
 {% block title %}Sign Up{% endblock %}
 
@@ -10,7 +10,30 @@
 <form method="post">
     {% csrf_token %}
 
-    {{ form.as_p }}
+    {% for field in form %}
+
+        {% if field.errors %}
+            <div class="text-danger small">
+                {{ field.errors }}
+            </div>
+        {% endif %}
+
+        {% if field.field.widget.input_type in 'text, password, email' %}
+
+            <div class="form-floating">
+                {{ field | input_class:'form-control my-3' }}
+                {{ field.label_tag }}
+            </div>
+
+        {% elif field.field.widget.input_type in 'checkbox' %}
+
+            <div class="form-check">
+                {{ field | input_class:'form-check-input' }}
+                <label for="{{ field.auto_id }}" class="form-check-label">{{ field.label }}</label>
+            </div>
+        {% endif %}
+
+    {% endfor %}
     <div class="d-grid mt-3">
         <button type="submit" class="btn btn-warning border border-2 border-dark">
             Confirm</button>
