@@ -1,0 +1,16 @@
+{% extends '_base.html' %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+
+<h2>Log in</h2>
+<form method="post">
+    {% csrf_token %}
+
+   {{ form.as_p }}
+    <div class="d-grid mt-4">
+        <button type="submit" class="btn btn-warning border border-2 border-dark">
+            Log in</button>
+    </div>
+</form>
+
+{% endblock %}

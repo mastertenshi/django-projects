@@ -38,14 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-
+    # Local
+    'users',
+    'pages',
     # 3rd Party
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
 
-    # Local
-    'users.apps.UsersConfig',
-    'pages.apps.PagesConfig',
 ]
 
 SITE_ID = 1
