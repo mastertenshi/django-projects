@@ -3,41 +3,46 @@
 
 {% block title %}Log in{% endblock %}
 {% block content %}
+<div class="row d-flex justify-content-center">
 
-<h2>Log in</h2>
-<form method="post">
-    {% csrf_token %}
+<div class="col-11 col-sm-9 col-md-8 col-lg-6 col-xl-5">
 
-    {% if form.non_field_errors %}
-        <div class="text-danger small mt-2">
-            {{ form.non_field_errors }}
-        </div>
-    {% endif %}
+    <h2>Log in</h2>
+    <form method="post">
+        {% csrf_token %}
 
-    {% for field in form %}
-
-        {% if field.field.widget.input_type in 'text, password, email' %}
-            <div class="form-floating">
-                {{ field | input_class:"form-control my-3" }}
-                {{ field.label_tag | cut:':' }}
-            </div>
-
-        {% elif field.field.widget.input_type in 'checkbox' %}
-
-            <div class="form-check">
-                {{ field | input_class:"form-check-input" }}
-                <label for="{{ field.id_for_label }}" class="form-check-label">
-                    {{ field.label }}
-                </label>
+        {% if form.non_field_errors %}
+            <div class="text-danger small mt-2">
+                {{ form.non_field_errors }}
             </div>
         {% endif %}
-    {% endfor %}
 
-    <div class="d-grid mt-3">
-        <button type="submit" class="btn btn-warning border border-2 border-dark">
-            Log in
-        </button>
-    </div>
-</form>
+        {% for field in form %}
 
+            {% if field.field.widget.input_type in 'text, password, email' %}
+                <div class="form-floating">
+                    {{ field | input_class:"form-control my-3" }}
+                    {{ field.label_tag | cut:':' }}
+                </div>
+
+            {% elif field.field.widget.input_type in 'checkbox' %}
+
+                <div class="form-check">
+                    {{ field | input_class:"form-check-input" }}
+                    <label for="{{ field.id_for_label }}" class="form-check-label">
+                        {{ field.label }}
+                    </label>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <div class="d-grid mt-3">
+            <button type="submit" class="btn btn-warning border border-2 border-dark">
+                Log in
+            </button>
+        </div>
+    </form>
+</div>
+
+</div>
 {% endblock %}
