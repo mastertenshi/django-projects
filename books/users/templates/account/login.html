@@ -8,33 +8,35 @@
 <form method="post">
     {% csrf_token %}
 
-
     {% if form.non_field_errors %}
         <div class="text-danger small mt-2">
-            {{ form.non_field_errors}}
+            {{ form.non_field_errors }}
         </div>
     {% endif %}
+
     {% for field in form %}
 
-        {% if field.field.widget.input_type in 'text, password' %}
-
+        {% if field.field.widget.input_type in 'text, password, email' %}
             <div class="form-floating">
-                {{ field | input_class:'form-control my-3' }}
-                {{ field.label_tag }}
+                {{ field | input_class:"form-control my-3" }}
+                {{ field.label_tag | cut:':' }}
             </div>
 
         {% elif field.field.widget.input_type in 'checkbox' %}
 
             <div class="form-check">
-                {{ field | input_class:'form-check-input' }}
-                <label for="{{ field.id_for_label }}" class="form-check-label">{{ field.label }}</label>
+                {{ field | input_class:"form-check-input" }}
+                <label for="{{ field.id_for_label }}" class="form-check-label">
+                    {{ field.label }}
+                </label>
             </div>
         {% endif %}
     {% endfor %}
 
-    <div class="d-grid mt-4">
+    <div class="d-grid mt-3">
         <button type="submit" class="btn btn-warning border border-2 border-dark">
-            Log in</button>
+            Log in
+        </button>
     </div>
 </form>
 
