@@ -1,6 +1,9 @@
 {% extends '_base.html' %}
 {% block title %}{{ book.title }}{% endblock %}
+
 {% block content %}
+
+<a href="{% url 'books:list' %}" class="btn btn-success mb-4">< Back</a>
 
 <h2>
     <a  href="#" class="text-decoration-none text-success">
@@ -8,5 +11,20 @@
 </h2>
 <p class="mt-4">Author: {{ book.author }}</p>
 <p>Price: {{ book.price }}</p>
+
+
+{% if book.reviews.all %}
+
+    <h5 class="mt-5">Reviews</h5>
+
+    <div class="list-group col-md-5">
+        {% for review in book.reviews.all %}
+            <a class="d-flex list-group-item justify-content-between">
+                {{ review.review }} <span class="text-secondary">{{ review.author }}</span></a>
+        {% endfor %}
+    </div>
+
+{% endif %}
+
 
 {% endblock %}
