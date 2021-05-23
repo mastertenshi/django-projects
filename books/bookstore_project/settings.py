@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4+x9$s=hkbvb)s7idvx*#m=rk&19mq@25ycnhp9kda#u$0lf=t'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -38,13 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    # Local
+    # Account (local)
     'users',
-    'pages',
     # 3rd Party
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    # Local
+    'pages',
 ]
 
 MIDDLEWARE = [
@@ -85,8 +87,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'bookstore',
-        'USER': 'postgres',
-        'PASSWORD': 'sen$31J0k0',
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -149,7 +151,13 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
 
 
 # LOGOUT_REDIRECT_URL = 'home'
