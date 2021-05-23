@@ -1,0 +1,16 @@
+{% extends '_base.html' %}
+{% block title %}Books{% endblock %}
+{% block content %}
+
+<div class="row">
+    {% for book in book_list %}
+        <div class="col-sm-4">
+            <h2>
+                <a href="{% url 'book.get_absolute_url' %}" class="text-decoration-none text-success">
+                    {{ book.title }}</a>
+            </h2>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
