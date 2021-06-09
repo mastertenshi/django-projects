@@ -1,9 +1,13 @@
 {% extends '_base.html' %}
-{% load static %}
+{% load css_filters %}
 
-{% block title %}Bookstore Django{% endblock %}
+{% block title %}Django Bookstore{% endblock %}
 {% block content %}
 
-<img class="bookcover" src="{% static 'images/djangoforprofessionals.png' %}">
+<form action="{% url 'home' %}" method="get" class="form-inline mt-2 mt-md-0">
+    <input name="q" type="text" class="form-control" placeholder="Search Books">
+</form>
+
+{% include 'books/_list.html' %}
 
 {% endblock %}

@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+
+{% block title %}Page Not Found{% endblock %}
+{% block content %}
+
+<h2><a>The Page appears to be unreachable or it doesn't exist.</a></h2>
+<h5 class="mt-4"><a href="#" class="text-decoration-none text-danger">Report error</a></h5>
+
+<a href="{% url 'home' %}"><button class="btn btn-primary mt-4">Go back Home</button></a>
+
+{% endblock %}

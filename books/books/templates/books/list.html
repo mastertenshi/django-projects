@@ -1,14 +1,15 @@
 {% extends '_base.html' %}
-{% block title %}Books{% endblock %}
+
+{% load css_filters %}
+
+{% block title %}All Books{% endblock %}
 {% block content %}
 
-<div class="row">
-    {% for book in book_list %}
-        <h2>
-            <a href="{{ book.get_absolute_url }}" class="text-decoration-none text-success">
-                {{ book.title }}</a>
-        </h2>
-    {% endfor %}
-</div>
+
+{% if 'books.special_status' not in user.get_user_permissions %}
+    <a href="{% url 'orders:order' %}" class="btn btn-success">Purchase All Books</a>
+{% endif %}
+
+{% include 'books/_list.html' %}
 
 {% endblock %}

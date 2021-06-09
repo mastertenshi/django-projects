@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+
+{% block title %}Buy All Books{% endblock %}
+{% block content %}
+
+<h1>Get access to All Books</h1>
+<p>Buy for $39.00</p>
+
+<form action="{% url 'orders:charge' %}" method="post">
+    {% csrf_token %}
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="{{ stripe_key }}"
+        data-description="All Books"
+        data-amount="3900"
+        data-locale="auto">
+    </script>
+</form>
+
+<hr class="mt-5">
+
+<pre>test card number: 4242 4242 4242 4242</pre>
+
+{% endblock %}

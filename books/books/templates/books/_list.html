@@ -1,0 +1,17 @@
+{% for book in books_list %}
+    <div class="m-3">
+        <h2>
+            <a
+            {% if 'books.special_status' in user.get_user_permissions %}
+                href="{{ book.get_absolute_url }}"
+            {% else %}
+                href="{% url 'orders:order' %}"
+            {% endif %}
+            class="text-decoration-none"
+
+            >{{ book.title }}</a>
+        </h2>
+        <p class="mt-3">Author: {{ book.author }}</p>
+        <p>Price: ${{ book.price }}</p>
+    </div>
+{% endfor %}

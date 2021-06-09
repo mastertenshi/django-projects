@@ -6,7 +6,6 @@ from .models import Book, Review
 class ReviewInline(admin.TabularInline):
     model = Review
 
-
 class BookAdmin(admin.ModelAdmin):
     inlines = [
         ReviewInline,
